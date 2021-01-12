@@ -2,8 +2,11 @@
 
 //TODO: Step 5 - Create a new class called StoryBrain.
 import 'package:destini_challenge_starting/story.dart';
+import 'package:http/http.dart' as http;
 
 class StoryBrain {
+  String title = 'no title';
+  String answer = 'no answer';
 //TODO: Step 7 - Uncomment the lines below to include storyData as a private property in StoryBrain. Hint: You might need to change something in story.dart to make this work.
   List<Story> _storyData = [
     Story(
@@ -43,6 +46,10 @@ class StoryBrain {
   String getStory() {
     print(_storyData[_storyNumber]);
     return _storyData[_storyNumber].storyTitle;
+  }
+  Future getContentApi(String url) async{
+    var response = await (http.get(url));
+    return response;
   }
 
 //TODO: Step 11 - Create a method called getChoice1() that returns the text for the first choice1 from _storyData.
